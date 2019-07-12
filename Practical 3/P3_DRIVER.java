@@ -20,8 +20,20 @@ public class P3_DRIVER {
         }
         System.out.println("ENTER BIN SIZE:");
         Bin b = new Bin(n,in.nextInt());
+        b.data.forEach(m -> {
+            System.out.print((int)m+" ");
+        });
+        System.out.println("\nBY BOUNDARY");
         b.smoothingByBoundary().forEach(m -> {
-            System.out.println(">"+(int)m);
+            System.out.print((int)m+" ");
+        });
+        System.out.println("\nBY MEAN");
+        b.smoothingByMean().forEach(m -> {
+            System.out.print((int)m+" ");
+        });
+        System.out.println("\nBY MEDIAN");
+        b.smoothingByMedian().forEach(m -> {
+            System.out.print((int)m+" ");
         });
     }
 }

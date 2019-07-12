@@ -73,4 +73,37 @@ public class Bin {
         }
         return temp;
     }
+    
+    List smoothingByMedian(){
+        List temp = new ArrayList();
+        int median;
+        int r = data.size() % size;
+        for (int i = 0; i < data.size() - r; i+=size) {
+            List t1 = data.subList(i,i + size);
+            Collections.sort(t1);
+            if(t1.size() % 2 == 0){
+                median = (int) ( ( (int)t1.get(t1.size()/2 - 1) + (int)t1.get(t1.size()/2) ) / 2 );
+            }
+            else{
+                median = (int) t1.get(t1.size()/2);
+            }
+            for (int j = 0; j < size; j++) {
+                temp.add(median);
+            }
+        }
+        if(r != 0){
+            List t1 = data.subList(data.size() - r,data.size());
+            Collections.sort(t1);
+            if(t1.size() % 2 == 0){
+                median = (int) ( ( (int)t1.get(t1.size()/2 - 1) + (int)t1.get(t1.size()/2) ) / 2 );
+            }
+            else{
+                median = (int) t1.get(t1.size()/2);
+            }
+            for (int j = 0; j < r; j++) {
+                temp.add(median);
+            }
+        }
+        return temp;
+    }
 }

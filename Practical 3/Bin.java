@@ -8,6 +8,7 @@ import java.util.List;
  *
  * @author Raj Dhanani
  */
+
 public class Bin {
     List data;
     int size;

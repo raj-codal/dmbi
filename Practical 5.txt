@@ -1,0 +1,72 @@
+=== Run information ===
+
+Scheme:weka.classifiers.bayes.NaiveBayes 
+Relation:     playtennis
+Instances:    14
+Attributes:   5
+              outlook
+              temperature
+              humidity
+              windy
+              play
+Test mode:3-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Naive Bayes Classifier
+
+                Class
+Attribute          no    yes
+               (0.38) (0.63)
+=============================
+outlook
+  sunny            4.0    3.0
+  overcast         1.0    5.0
+  rainy            3.0    4.0
+  [total]          8.0   12.0
+
+temperature
+  hot              3.0    3.0
+  mild             3.0    5.0
+  cool             2.0    4.0
+  [total]          8.0   12.0
+
+humidity
+  high             5.0    4.0
+  normal           2.0    7.0
+  [total]          7.0   11.0
+
+windy
+  weak             3.0    7.0
+  strong           4.0    4.0
+  [total]          7.0   11.0
+
+
+
+Time taken to build model: 0.02 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances          11               78.5714 %
+Incorrectly Classified Instances         3               21.4286 %
+Kappa statistic                          0.5116
+Mean absolute error                      0.3695
+Root mean squared error                  0.4145
+Relative absolute error                 78.8507 %
+Root relative squared error             85.7171 %
+Total Number of Instances               14     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.6       0.111      0.75      0.6       0.667      0.822    no
+                 0.889     0.4        0.8       0.889     0.842      0.822    yes
+Weighted Avg.    0.786     0.297      0.782     0.786     0.779      0.822
+
+=== Confusion Matrix ===
+
+ a b   <-- classified as
+ 3 2 | a = no
+ 1 8 | b = yes
+

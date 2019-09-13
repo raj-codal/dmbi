@@ -88,6 +88,7 @@ public class Kmean {
         }
         double distanceMatrix[] = new double[c.length];
         boolean flag = true;
+        int it = 1;
         while (flag && n-- != 0) {
 
             for (int x = 0; x < c.length; x++) {
@@ -110,9 +111,16 @@ public class Kmean {
                     meanArray[temp] = c1.mean;
                     temp++;
                 } catch (Exception ex) {
-                    System.out.println(ex);
+//                    System.out.println(ex);                                                                                                                                                                                    
                 }
             }
+            System.out.println("After Itteration "+ it +":");
+            int i = 1;
+            for (Cluster x : c) {
+                System.out.println("cluster"+i+" : "+x.data);
+                i++;
+            }
+            it++;
         }
 
     }
@@ -141,6 +149,7 @@ public class Kmean {
         itterate(t);
         System.out.println();
         int i = 1;
+        System.out.println("FINAL:");
         for (Cluster x : c) {
             System.out.println("cluster"+i+" : "+x.data);
             i++;

@@ -1,0 +1,68 @@
+=== Run information ===
+
+Scheme:       weka.associations.Apriori -I -N 100 -T 0 -C 0.45 -D 0.05 -U 1.0 -M 0.2 -S -1.0 -Z -c -1
+Relation:     basket2
+Instances:    9
+Attributes:   6
+              TID
+              i1
+              i2
+              i3
+              i4
+              i5
+=== Associator model (full training set) ===
+
+
+Apriori
+=======
+
+Minimum support: 0.2 (2 instances)
+Minimum metric <confidence>: 0.45
+Number of cycles performed: 16
+
+Generated sets of large itemsets:
+
+Size of set of large itemsets L(1): 5
+
+Large Itemsets L(1):
+i1=1 6
+i2=1 7
+i3=1 6
+i4=1 2
+i5=1 2
+
+Size of set of large itemsets L(2): 6
+
+Large Itemsets L(2):
+i1=1 i2=1 4
+i1=1 i3=1 4
+i1=1 i5=1 2
+i2=1 i3=1 4
+i2=1 i4=1 2
+i2=1 i5=1 2
+
+Size of set of large itemsets L(3): 2
+
+Large Itemsets L(3):
+i1=1 i2=1 i3=1 2
+i1=1 i2=1 i5=1 2
+
+Best rules found:
+
+  1. i5=1 2 ==> i1=1 2    <conf:(1)> lift:(1.5) lev:(0.07) [0] conv:(0.67)
+  2. i4=1 2 ==> i2=1 2    <conf:(1)> lift:(1.29) lev:(0.05) [0] conv:(0.44)
+  3. i5=1 2 ==> i2=1 2    <conf:(1)> lift:(1.29) lev:(0.05) [0] conv:(0.44)
+  4. i2=1 i5=1 2 ==> i1=1 2    <conf:(1)> lift:(1.5) lev:(0.07) [0] conv:(0.67)
+  5. i1=1 i5=1 2 ==> i2=1 2    <conf:(1)> lift:(1.29) lev:(0.05) [0] conv:(0.44)
+  6. i5=1 2 ==> i1=1 i2=1 2    <conf:(1)> lift:(2.25) lev:(0.12) [1] conv:(1.11)
+  7. i1=1 6 ==> i2=1 4    <conf:(0.67)> lift:(0.86) lev:(-0.07) [0] conv:(0.44)
+  8. i3=1 6 ==> i1=1 4    <conf:(0.67)> lift:(1) lev:(0) [0] conv:(0.67)
+  9. i1=1 6 ==> i3=1 4    <conf:(0.67)> lift:(1) lev:(0) [0] conv:(0.67)
+ 10. i3=1 6 ==> i2=1 4    <conf:(0.67)> lift:(0.86) lev:(-0.07) [0] conv:(0.44)
+ 11. i2=1 7 ==> i1=1 4    <conf:(0.57)> lift:(0.86) lev:(-0.07) [0] conv:(0.58)
+ 12. i2=1 7 ==> i3=1 4    <conf:(0.57)> lift:(0.86) lev:(-0.07) [0] conv:(0.58)
+ 13. i2=1 i3=1 4 ==> i1=1 2    <conf:(0.5)> lift:(0.75) lev:(-0.07) [0] conv:(0.44)
+ 14. i1=1 i3=1 4 ==> i2=1 2    <conf:(0.5)> lift:(0.64) lev:(-0.12) [-1] conv:(0.3)
+ 15. i1=1 i2=1 4 ==> i3=1 2    <conf:(0.5)> lift:(0.75) lev:(-0.07) [0] conv:(0.44)
+ 16. i1=1 i2=1 4 ==> i5=1 2    <conf:(0.5)> lift:(2.25) lev:(0.12) [1] conv:(1.04)
+

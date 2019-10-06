@@ -70,20 +70,22 @@ public class Kmean {
         }
     }
 
-    public static double percentDifference(Cluster a1[], double a2[]) {
+    public static double percentDifference(double a1[], double a2[]) {
         double percent = 0;
         double b[] = a2.clone();
         for (int i = 0; i < b.length; i++) {
-            b[i] = Math.abs(a1[i].mean - a2[i]);
+            b[i] = Math.abs(a1[i] - a2[i]);
             percent = b[i] / (a2[i] * a2.length);
         }
         return percent;
     }
 
     public static void itterate(int n) throws Exception {
-        double meanArray[] = new double[c.length];
-        for (int i = 0; i < meanArray.length; i++) {
-            meanArray[i] = 0;
+        double meanArray1[] = new double[c.length];
+        double meanArray2[] = new double[c.length];
+        for (int i = 0; i < meanArray1.length; i++) {
+            meanArray1[i] = 0;
+            meanArray2[i] = 0;
         }
         double distanceMatrix[] = new double[c.length];
         boolean flag = true;
@@ -100,18 +102,20 @@ public class Kmean {
                 int minIndex = minIndexFromArray(distanceMatrix);
                 c[minIndex].data.add(v);
             });
-            if (percentDifference(c, meanArray) < 0.5) {
-                flag = false;
-            }
             int temp = 0;
             for (Cluster c1 : c) {
                 try {
                     c1.mean = mean(c1.data);
-                    meanArray[temp] = c1.mean;
+                    meanArray2[temp] = c1.mean;
                     temp++;
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
+            }
+            if (percentDifference(meanArray1, meanArray2) == 0) {
+                flag = false;
+            } else {
+                meanArray1 = meanArray2.clone();
             }
             System.out.println("Itteration " + itt + ":");
             int p = 1;
@@ -126,6 +130,40 @@ public class Kmean {
     }
 
     public static void main(String[] args) throws Exception {
+        
+        /*
+                ENTER SIZE OF DATA SET:
+                10
+                ENTER THE DATA SET:
+                10 11 1 3 25 50 21 2 70 22
+                ENTER VALUE OF K:
+                2
+                ENTER MAX NUMBER OF ITTERTATIONS:
+                100
+                Itteration 1:
+                cluster1 : [10.0, 1.0, 3.0, 2.0]
+                cluster2 : [11.0, 25.0, 50.0, 21.0, 70.0, 22.0]
+                Itteration 2:
+                cluster1 : [10.0, 11.0, 1.0, 3.0, 2.0]
+                cluster2 : [25.0, 50.0, 21.0, 70.0, 22.0]
+                Itteration 3:
+                cluster1 : [10.0, 11.0, 1.0, 3.0, 21.0, 2.0]
+                cluster2 : [25.0, 50.0, 70.0, 22.0]
+                Itteration 4:
+                cluster1 : [10.0, 11.0, 1.0, 3.0, 21.0, 2.0, 22.0]
+                cluster2 : [25.0, 50.0, 70.0]
+                Itteration 5:
+                cluster1 : [10.0, 11.0, 1.0, 3.0, 25.0, 21.0, 2.0, 22.0]
+                cluster2 : [50.0, 70.0]
+                Itteration 6:
+                cluster1 : [10.0, 11.0, 1.0, 3.0, 25.0, 21.0, 2.0, 22.0]
+                cluster2 : [50.0, 70.0]
+
+                FINAL:
+                cluster1( mean-11.9) : [10.0, 11.0, 1.0, 3.0, 25.0, 21.0, 2.0, 22.0]
+                cluster2( mean-60.0) : [50.0, 70.0]
+        */
+        
         Scanner in = new Scanner(System.in);
         System.out.println("ENTER SIZE OF DATA SET:");
         double set[];// = {3, 10, 11, 12, 4, 20, 25, 2, 30};
@@ -149,8 +187,9 @@ public class Kmean {
         itterate(t);
         System.out.println();
         int i = 1;
+        System.out.println("FINAL:");
         for (Cluster x : c) {
-            System.out.println("cluster" + i + " : " + x.data);
+            System.out.println("cluster" + i + "( mean-" + x.mean + ") : " + x.data);
             i++;
         }
     }

@@ -1,16 +1,15 @@
-package dmbi;
+package kmean;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//SINGLE DIMENSION
 /**
  *
  * @author Raj Dhanani
  */
-
-//FOR SINGLE DIMENSION
-
 class Cluster {
 
     ArrayList data = new ArrayList();
@@ -64,7 +63,7 @@ public class Kmean {
                 total = total.add(new BigDecimal(Double.toString((double) y)));
             };
 
-            BigDecimal meanValue = total.divide(new BigDecimal(Double.toString((double) x.size())));
+            BigDecimal meanValue = total.divide(new BigDecimal(Double.toString((double) x.size())), 1, RoundingMode.HALF_UP);
             return meanValue.doubleValue();
         } else {
             return 0;
@@ -88,7 +87,7 @@ public class Kmean {
         }
         double distanceMatrix[] = new double[c.length];
         boolean flag = true;
-        int it = 1;
+        int itt = 1;
         while (flag && n-- != 0) {
 
             for (int x = 0; x < c.length; x++) {
@@ -111,16 +110,17 @@ public class Kmean {
                     meanArray[temp] = c1.mean;
                     temp++;
                 } catch (Exception ex) {
-//                    System.out.println(ex);                                                                                                                                                                                    
+                    System.out.println(ex);
                 }
             }
-            System.out.println("After Itteration "+ it +":");
-            int i = 1;
+            System.out.println("Itteration " + itt + ":");
+            int p = 1;
             for (Cluster x : c) {
-                System.out.println("cluster"+i+" : "+x.data);
-                i++;
+                System.out.println("cluster" + p + " : " + x.data);
+                p++;
             }
-            it++;
+            itt++;
+
         }
 
     }
@@ -149,10 +149,10 @@ public class Kmean {
         itterate(t);
         System.out.println();
         int i = 1;
-        System.out.println("FINAL:");
         for (Cluster x : c) {
-            System.out.println("cluster"+i+" : "+x.data);
+            System.out.println("cluster" + i + " : " + x.data);
             i++;
         }
     }
+
 }
